@@ -1,0 +1,187 @@
+body {
+  background: #ffffff;
+  color: #216585;
+  margin-top: 8rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #030202;
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-steel {
+  background-color: #45619D;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #ffffff;
+  font-size: 25px;
+  
+
+}
+
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #66a5d8;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+ 
+}
+
+.content-section {
+  background: #ffffff;
+  width: 100%;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.article-title {
+  color: #000000;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+
+}
+
+.article-metadata a:hover {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+
+  
+h1 {
+  display: inline-block;
+  margin-top: 15px;
+  margin-left: 25px;
+}
+#portal {
+  display: inline-block;
+  vertical-align: top;
+  width: 500px;
+  height: 800px;
+}
+#errors {
+  display: inline-block;
+  text-align: center;
+  width: 815px;
+  height: 800px;
+  margin: 0 auto;
+  color: red;
+}
+#space {
+  margin-top: 105px;
+}
+
+.btn {
+  float: right;
+  font-size: 15px;
+  padding: 15px;
+  color: white;
+  background-color: #597EAA;
+  -webkit-box-shadow: 6px 6px 15px -1px #000000; 
+  box-shadow: 6px 6px 15px -1px #000000;
+}
+.alrght   {
+  text-align: right;
+  font-size: 22px;
+}
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+textarea{
+  border:none;
+  width:100%;
+  padding:0;
+  font-size:13px;
+}
+
+.uibutton.confirm {
+  border-color: #29447e #29447e #1a356e;
+  color: #fff;
+  background-color: #5B74A8;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#637bad), to(#5872a7));
+  background-image: -moz-linear-gradient(#637bad, #5872a7);
+  background-image: -o-linear-gradient(#637bad, #5872a7);
+  background-image: linear-gradient(#637bad, #5872a7);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#637bad', EndColorStr='#5872a7'); /* for IE 6 - 9 */
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+}
+
+.uibutton.confirm:active {
+  border-color: #29447E;
+  background: #4F6AA3;
+  filter: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.unit {
+  background: #fff;
+  padding: 5px;
+  border: 1px #C4CDE0 solid;
+  border-radius: 3px;
+  width: 600px;
+
+}
+
+.formUnit {
+  border: 1px solid #B4BBCD;
+  padding: 5px;
+  margin-top: 5px;
+  position: relative;
+}

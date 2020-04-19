@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+ {% load crispy_forms_tags %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>The Wall </title>
+      {% load static %}	
+      <link href="{% static '/css/normalise.css' %}"media="screen" rel="stylesheet" type="text/css" />
+      <link href="{% static '/css/all.css' %}" media="screen" rel="stylesheet" type="text/css" />
+      <link href="{% static '/css/timeline.css' %}" media="screen" rel="stylesheet" type="text/css" />
+      <link href="{% static '/css/fb-button.css' %}" media="screen" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/wall.css' %}">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href="">Welcome {{request.session.u_fname}}</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if request.session.u_id %}
+              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+              <a class="nav-item nav-link" href="{% url 'index' %}">Login</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+            <ol class="timeline clearfix">
+                    <li class="spine">
+                      <a href="#" title="This is the Spine of Facebook Timline. You can Add Custom Events here"></a>
+                    </li>
+                    <li class="left">
+                      <i class="pointer"></i>
+                      <div class="unit">
+                        <ol class="actions">
+                          <li class="active"><a href="#" rel="Status"><i class="icon icon-status"></i>Status</a></li>
+                          <li><a href="#"><i class="icon icon-photo"></i>Photo</a></li>
+                          <li><a href="#"><i class="icon icon-place"></i>Place</a></li>
+                          <li><a href="#"><i class="icon icon-event"></i>Life Event</a></li>
+                        </ol>
+                        <!-- Units -->
+                        <div class="actionUnits">
+                        <form class="formUnit" id="Status" action="/post" method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <i class="active"></i>
+                            <textarea name="message" placeholder="What's on your mind?" id="" cols="30" rows="3"></textarea>
+                            <input type="hidden" name="id" value="request.session['u_id']"/>
+                            <ol class="controls clearfix">
+                            <li class="post">
+                            <button class="uibutton confirm" type="submit">Post</button>
+                            </li>
+                            </ol>
+                        </form>
+                          </div>
+                        </div>
+                        <!-- / Units -->
+                      </div>
+                    </li>
+                      </div>
+                    </li>
+                  </ol>  
+            {% for post in posts reversed %}
+            <div style="border: 1px solid #e3e3e3">
+            <div class="article-metadata" style="padding-top: 2rem;">
+                <h3 ><a class="mr-2" href="#">{{post.messager.first_name}} {{post.messager.last_name}}</a></h3>
+                 <p><strong>{{post.message}}</strong></p>
+                 <small class="text-muted">{{post.created_at|date:'F jS Y'}}</small>
+                {% if post.messager.id == request.session.u_id %} <a href="/delmsg/{{post.id}}"><button class="btn btn-outline-info">Delete</button></a> 
+                {% endif %}
+            </div>
+            <div class="mycomment" style="margin-bottom:5px;">
+                {% for comment in post.post_comments.all %}
+                <h3><a href="">{{comment.commentor.first_name}} {{comment.commentor.last_name}} </a></h3>
+                <p><strong>{{comment.comment}}</strong></p>
+                <small class="text-muted">{{comment.created_at|date:'F jS Y'}}</small>
+                {% if comment.commentor.id == request.session.u_id %} 
+                <a href="/delcom/{{comment.id}}"><button class="btn btn-outline-info">Delete</button></a> {% endif %}
+                {% endfor %}
+            </div>
+          </div>
+            <div style="margin-bottom:3rem;">
+                 <form action="/comment" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input id ="commentbox" type="textarea" name="comment" row="1"/>
+                    <input type="hidden" name="id" value="request.session['u_id']"/>
+                    <input type="hidden" name="post_id" value="{{post.id}}"/>
+                    <input  id="cmtbtn" type="submit" value="Post a comment!"  style=" background: #EDEFF4;"/>
+                </form>
+            </div>
+            {% endfor %}
+</article>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

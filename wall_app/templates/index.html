@@ -1,0 +1,75 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Wall Home Page</title>
+<link rel='stylesheet' href="{% static 'css/main.css' %}">
+</head>
+<body class="login">
+<div id="facebook-Bar">
+<div id="facebook-Frame">
+<div id="logo"> <a href="https://hdp-usa.com/">THE WALL</a> </div>
+<div id="header-main-right">
+<div id="header-main-right-nav">
+<form action="/login" method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+<table border="0" style="border:none">
+<tr>
+<td ><input type="text" tabindex="1" id="" placeholder="Email" name="email" class="inputtext-radius1" value=""></td>
+<td ><input type="password" tabindex="2" id="" placeholder="Password" name="password" class="inputtext-radius1" ></td>
+<td ><input type="submit" class="fbbutton" name="login" value="Login" /></td>
+</tr>
+</table>
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- header ends here -->
+<div class="loginbox radius">
+<h2 style="color:#141823; text-align:center;">Welcome to My Wall Project</h2>
+<div class="loginboxinner radius">
+<div class="loginheader">
+<h4 class="title">Connect with friends around you.</h4>
+</div>
+<!--loginheader-->
+<div class="loginform">
+<form  action="/register" method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+<p>
+<input type="text" id="" name="first_name" placeholder="First Name"  class="radius mini" />
+<input type="text" id="" name="last_name" placeholder="Last Name" class="radius mini" />
+</p>
+<p>
+<input type="text" id="" name="email" placeholder="Your Email" class="radius" />
+</p>
+<p>
+<input type="password" id="" name="password" placeholder="Password" class="radius" />
+</p>
+<p>
+<input type="confirm password" id="" name="confirm_password" placeholder=" Confirm Password" class="radius" />
+</p>
+<p>
+<button class="radius title" name="signup">Sign Up for the Wall</button>
+<div class="alert alert-info">
+        {%if messages%}
+            {%for message in messages%}
+            <p style="color: red;">{{message}}</p>
+            {%endfor%}
+        {%endif%}
+    </div>
+</p>
+</form>
+</div>
+<!--loginform-->
+</div>
+<!--loginboxinner-->
+</div>
+<!--loginbox-->
+</body>
+</html>
